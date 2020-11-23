@@ -11,3 +11,10 @@
 #spring:
 #  application:
 #    name: dashboardManagement-service
+
+
+security:
+  oauth2:
+    client:
+      clientId: ABCD
+      clientSecret: ABCD
