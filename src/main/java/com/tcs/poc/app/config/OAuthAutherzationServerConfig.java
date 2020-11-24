@@ -1,4 +1,5 @@
 package com.tcs.poc.app.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -15,58 +16,48 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
-
 @Configuration
 @EnableAuthorizationServer
-public class OAuthAutherzationServerConfig extends AuthorizationServerConfigurerAdapter{
-	
+public class OAuthAutherzationServerConfig extends AuthorizationServerConfigurerAdapter {
+
 	@Autowired
 	@Qualifier("authenticationManagerBean")
 	private AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	private com.tcs.poc.app.service.UserDetailServiceImpl detailServiceImpl;
-	
+
 	@Autowired
 	private Environment env;
-	
-	@Autowired 
+
+	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
+
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security
-				.tokenKeyAccess("permitAll()")
-				.checkTokenAccess("isAuthenticated()")
+		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()")
 				.passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
+
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		endpoints.authenticationManager(authenticationManager)
-		.userDetailsService(detailServiceImpl)
-		.tokenStore(tokenStore())
-		.accessTokenConverter(accessTokenConverter())
-		;
+		endpoints.authenticationManager(authenticationManager).userDetailsService(detailServiceImpl)
+				.tokenStore(tokenStore()).accessTokenConverter(accessTokenConverter());
 	}
-	
+
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		String secretEncoded = passwordEncoder.encode(env.getProperty("security.oauth2.client.clientSecret"));
-		clients.inMemory()
-		.withClient(env.getProperty("security.oauth2.client.clientId"))
-		.secret(secretEncoded)		
-		.authorizedGrantTypes("password","authorization_code","refresh_token")
-		.scopes("read","write")
-		.autoApprove(true)
-		.accessTokenValiditySeconds(7200);
+		clients.inMemory().withClient(env.getProperty("security.oauth2.client.clientId")).secret(secretEncoded)
+				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("read", "write")
+				.autoApprove(true).accessTokenValiditySeconds(7200);
 	}
-	
+
 	@Bean
 	public TokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
 	}
-	
+
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
