@@ -76,7 +76,7 @@ public class DashboardService {
 		List<GetAllCustomerAccountDetailsResponse> tempCustomer = new ArrayList<GetAllCustomerAccountDetailsResponse>();
 
 		for (int i = 0; i < tempUser.size(); i++) {
-			System.out.println("No of User :" + tempUser.size());
+			
 			// tempUser.get(i).getRole().getRoleType().equals("Customer")
 
 			for (int j = 0; j < tempAcc.size(); j++) {
@@ -88,6 +88,7 @@ public class DashboardService {
 					tempCustomer1.setAccountNumber(tempAcc.get(j).getAccountNumber());
 					tempCustomer1.setBalance(tempAcc.get(j).getBalance());
 					tempCustomer1.setAccountStatusId(tempAcc.get(j).getUserAccountStatusType().getId());
+					tempCustomer1.setAccountTypeId(tempAcc.get(j).getUserAccountType().getId());
 					tempCustomer.add(tempCustomer1);
 				}
 			}

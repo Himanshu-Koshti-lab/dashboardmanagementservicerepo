@@ -49,7 +49,7 @@ public class DashboardController {
 		return user;
 	}
 
-	@GetMapping(value = "/Customer/accountDetails")
+	@GetMapping(value = "/accountDetails")
 	@ResponseBody
 	public List<GetAllCustomerAccountDetailsResponse> getCustomerAccountDetails() {
 		List<GetAllCustomerAccountDetailsResponse> user = dashboarService.getCustomerAccountDetails();
