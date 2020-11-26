@@ -16,6 +16,7 @@ import com.tcs.poc.app.model.GetAllCustomerAccountDetailsResponse;
 import com.tcs.poc.app.model.GetAllCustomerDetailsForEmployeeResponse;
 import com.tcs.poc.app.model.GetAllCustomerResponse;
 import com.tcs.poc.app.model.GetAllEmployeeResponse;
+import com.tcs.poc.app.model.GetCustomer;
 import com.tcs.poc.app.model.UserRegistrationResponse;
 import com.tcs.poc.app.repository.AccountRepository;
 import com.tcs.poc.app.repository.UserRegistrationStatusRepository;
@@ -119,6 +120,21 @@ public class DashboardService {
 
 		}
 		return tempCustomer;
+	}
+
+
+	public GetCustomer getCustomer(String emailID) {
+		User user=userRepository.findByEmailID(emailID);
+		GetCustomer response=new GetCustomer();
+		response.setFirstName(user.getFirstName());
+		response.setLastName(user.getLastName());
+		response.setEmailID(user.getEmailID());
+		response.setMobileNo(user.getMobileNo());
+		response.setPermanentAddress(user.getPermanentAddress());
+		response.setPermanentCity(user.getPermanentCity());
+		response.setPermanentState(user.getPermanentState());
+		response.setPermanentZipcode(user.getPermanentZipcode());
+		return response;
 	}
 
 }
