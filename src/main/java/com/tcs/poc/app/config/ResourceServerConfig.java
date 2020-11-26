@@ -25,23 +25,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-//		http
-//			.csrf()
-//				.disable()
-//			.formLogin()
-//				.disable()
-//			.httpBasic()
-//				.disable()
-//			.sessionManagement()
-//			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-//			.and()
-//			.authorizeRequests()
-//			.anyRequest()
-//			.authenticated();
 		http
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/Admin","/**").hasRole("ADMIN")
+		.antMatchers("/Admin","/**","/getCustomerList").hasRole("ADMIN")
 		.antMatchers("/service/**").hasRole("CUSTOMER")
 		.antMatchers("/Customer/accountDetails","/getCustomerDetails").hasRole("EMPLOYEE")
 		.anyRequest().authenticated()
