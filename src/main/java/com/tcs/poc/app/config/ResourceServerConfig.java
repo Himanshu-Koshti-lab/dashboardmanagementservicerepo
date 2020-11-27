@@ -28,9 +28,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 		http
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/Admin","/getCustomerList","/getEmployeeList","/accountDetails","/getCustomerDetails").hasRole("ADMIN")
+		.antMatchers("/Admin","/**").hasRole("ADMIN")
 		.antMatchers("/getCustomer").hasRole("CUSTOMER")
-		.antMatchers("/Customer/accountDetails","/getCustomerDetails","/accountDetails").hasRole("EMPLOYEE")
+		.antMatchers("/Customer","/getCustomerDetails","/accountDetails").hasRole("EMPLOYEE")
 		.anyRequest().authenticated()
 		.and()
 		.cors();
