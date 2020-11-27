@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ import com.tcs.poc.app.model.GetAllCustomerDetailsForEmployeeResponse;
 import com.tcs.poc.app.model.GetAllCustomerResponse;
 import com.tcs.poc.app.model.GetAllEmployeeResponse;
 import com.tcs.poc.app.model.GetCustomer;
+import com.tcs.poc.app.model.GetEmployee;
 import com.tcs.poc.app.model.UserRegistrationRequest;
 import com.tcs.poc.app.model.UserRegistrationResponse;
 import com.tcs.poc.app.service.DashboardService;
@@ -68,6 +70,13 @@ public class DashboardController {
 	@ResponseBody
 	public GetCustomer getCustomer(@AuthenticationPrincipal String emailID) {
 		 return dashboarService.getCustomer(emailID);	
+	}
+	
+	@PreAuthorize("hasRole('ROLE_EMPLOYEE')")
+	@GetMapping(value = "/getEmployee")
+	@ResponseBody
+	public GetEmployee getEmployee(@AuthenticationPrincipal String emailID) {
+		 return dashboarService.getEmployee(emailID);	
 	}
 	
 
