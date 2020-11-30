@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tcs.poc.app.entity.User;
-
+import com.tcs.poc.app.model.GetAdmin;
 import com.tcs.poc.app.model.GetAllCustomerAccountDetailsResponse;
 import com.tcs.poc.app.model.GetAllCustomerDetailsForEmployeeResponse;
 import com.tcs.poc.app.model.GetAllCustomerResponse;
@@ -81,6 +81,14 @@ public class DashboardController {
 	@ResponseBody
 	public GetEmployee getEmployee(@AuthenticationPrincipal String emailID) {
 		return dashboarService.getEmployee(emailID);
+	}
+
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping(value = "/getAdmin")
+	@ResponseBody
+	public GetAdmin getAdmin(@AuthenticationPrincipal String emailID) {
+		 return dashboarService.getAdmin(emailID);	
 	}
 
 }

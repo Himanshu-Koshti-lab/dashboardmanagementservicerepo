@@ -12,6 +12,7 @@ import com.tcs.poc.app.entity.Account;
 import com.tcs.poc.app.entity.Role;
 import com.tcs.poc.app.entity.User;
 import com.tcs.poc.app.entity.UserRegistrationStatus;
+import com.tcs.poc.app.model.GetAdmin;
 import com.tcs.poc.app.model.GetAllCustomerAccountDetailsResponse;
 import com.tcs.poc.app.model.GetAllCustomerDetailsForEmployeeResponse;
 import com.tcs.poc.app.model.GetAllCustomerResponse;
@@ -142,6 +143,20 @@ public class DashboardService {
 	public GetEmployee getEmployee(String emailID) {
 		User user=userRepository.findByEmailID(emailID);
 		GetEmployee response=new GetEmployee();
+		response.setFirstName(user.getFirstName());
+		response.setLastName(user.getLastName());
+		response.setEmailID(user.getEmailID());
+		response.setMobileNo(user.getMobileNo());
+		response.setPermanentAddress(user.getPermanentAddress());
+		response.setPermanentCity(user.getPermanentCity());
+		response.setPermanentState(user.getPermanentState());
+		response.setPermanentZipcode(user.getPermanentZipcode());
+		return response;
+	}
+
+	public GetAdmin getAdmin(String emailID) {
+		User user=userRepository.findByEmailID(emailID);
+		GetAdmin response=new GetAdmin();
 		response.setFirstName(user.getFirstName());
 		response.setLastName(user.getLastName());
 		response.setEmailID(user.getEmailID());
