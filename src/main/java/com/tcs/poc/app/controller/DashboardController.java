@@ -37,6 +37,7 @@ public class DashboardController {
 	@Autowired
 	public DashboardService dashboarService;
 
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
 	@GetMapping(value = "/getCustomerList")
 	@ResponseBody
 	public List<GetAllCustomerResponse> getCustomerDetails() {
@@ -44,6 +45,7 @@ public class DashboardController {
 		return user;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/getEmployeeList")
 	@ResponseBody
 	public List<GetAllEmployeeResponse> getEmployeeDetails() {
@@ -51,6 +53,7 @@ public class DashboardController {
 		return user;
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
 	@GetMapping(value = "/accountDetails")
 	@ResponseBody
 	public List<GetAllCustomerAccountDetailsResponse> getCustomerAccountDetails() {
@@ -58,26 +61,26 @@ public class DashboardController {
 		return user;
 	}
 
+	@PreAuthorize("hasRole('ROLE_EMPLOYEE')")
 	@GetMapping(value = "/getCustomerDetails")
 	@ResponseBody
 	public List<GetAllCustomerDetailsForEmployeeResponse> getCustomerDetailsForEmployee() {
 		List<GetAllCustomerDetailsForEmployeeResponse> user = dashboarService.getCustomerDetailsForEmployee();
 		return user;
 	}
-	
-	
+
+	@PreAuthorize("hasRole('ROLE_CUSTOMER')")
 	@GetMapping(value = "/getCustomer")
 	@ResponseBody
 	public GetCustomer getCustomer(@AuthenticationPrincipal String emailID) {
-		 return dashboarService.getCustomer(emailID);	
+		return dashboarService.getCustomer(emailID);
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_EMPLOYEE')")
 	@GetMapping(value = "/getEmployee")
 	@ResponseBody
 	public GetEmployee getEmployee(@AuthenticationPrincipal String emailID) {
-		 return dashboarService.getEmployee(emailID);	
+		return dashboarService.getEmployee(emailID);
 	}
-	
 
 }
