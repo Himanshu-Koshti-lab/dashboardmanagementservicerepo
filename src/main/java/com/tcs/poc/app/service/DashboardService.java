@@ -38,7 +38,7 @@ public class DashboardService {
 		List<GetAllCustomerResponse> tempCustomer = new ArrayList<GetAllCustomerResponse>();
 
 		for (int i = 0; i < tempUser.size(); i++) {
-			if (tempUser.get(i).getRole().getRoleName().equals("ROLE_CUSTOMER")) {
+			if (tempUser.get(i).getRole().getRoleName().equals("CUSTOMER")) {
 				GetAllCustomerResponse tempCustomer1 = new GetAllCustomerResponse();
 				tempCustomer1.setId(tempUser.get(i).getId());
 				tempCustomer1.setFirstName(tempUser.get(i).getFirstName());
@@ -58,7 +58,7 @@ public class DashboardService {
 		List<GetAllEmployeeResponse> tempCustomer = new ArrayList<GetAllEmployeeResponse>();
 
 		for (int i = 0; i < tempUser.size(); i++) {
-			if (tempUser.get(i).getRole().getRoleName().equals("ROLE_EMPLOYEE")) {
+			if (tempUser.get(i).getRole().getRoleName().equals("EMPLOYEE")) {
 				GetAllEmployeeResponse tempCustomer1 = new GetAllEmployeeResponse();
 				tempCustomer1.setId(tempUser.get(i).getId());
 				tempCustomer1.setFirstName(tempUser.get(i).getFirstName());
@@ -83,7 +83,7 @@ public class DashboardService {
 
 			for (int j = 0; j < tempAcc.size(); j++) {
 				if (tempUser.get(i).getId() == tempAcc.get(j).getUserId()
-						&& tempUser.get(i).getRole().getRoleName().equals("ROLE_CUSTOMER")) {
+						&& tempUser.get(i).getRole().getRoleName().equals("CUSTOMER")) {
 					GetAllCustomerAccountDetailsResponse tempCustomer1 = new GetAllCustomerAccountDetailsResponse();
 					tempCustomer1.setFirstName(tempUser.get(i).getFirstName());
 					tempCustomer1.setLastName(tempUser.get(i).getLastName());
@@ -108,7 +108,7 @@ public class DashboardService {
 
 			for (int j = 0; j < tempAcc.size(); j++) {
 				if (tempUser.get(i).getId() == tempAcc.get(j).getUserId()
-						&& tempUser.get(i).getRole().getRoleName().equals("ROLE_CUSTOMER")) {
+						&& tempUser.get(i).getRole().getRoleName().equals("CUSTOMER")) {
 					GetAllCustomerDetailsForEmployeeResponse tempCustomer1 = new GetAllCustomerDetailsForEmployeeResponse();
 					tempCustomer1.setId(tempUser.get(i).getId());
 					tempCustomer1.setFirstName(tempUser.get(i).getFirstName());
