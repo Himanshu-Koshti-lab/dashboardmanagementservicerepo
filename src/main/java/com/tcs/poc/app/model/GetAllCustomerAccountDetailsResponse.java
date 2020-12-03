@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class GetAllCustomerAccountDetailsResponse {
 
+	private int user_id;
 	private String firstName;
 	private String lastName;
 	private double accountNumber;
