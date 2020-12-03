@@ -10,6 +10,7 @@ public class GetAllCustomerAccountDetailsResponse {
 	private String lastName;
 	private double accountNumber;
 	private double balance;
+	private int AccountRegStatus;
 	private int accountStatusId;
 	private int accountTypeId;
 }

@@ -85,6 +85,7 @@ public class DashboardService {
 				if (tempUser.get(i).getId() == tempAcc.get(j).getUserId()
 						&& tempUser.get(i).getRole().getRoleName().equals("CUSTOMER")) {
 					GetAllCustomerAccountDetailsResponse tempCustomer1 = new GetAllCustomerAccountDetailsResponse();
+					tempCustomer1.setAccountRegStatus(tempAcc.get(j).getAccountRegStatusType().getId());
 					tempCustomer1.setUser_id(tempUser.get(i).getId());
 					tempCustomer1.setFirstName(tempUser.get(i).getFirstName());
 					tempCustomer1.setLastName(tempUser.get(i).getLastName());
