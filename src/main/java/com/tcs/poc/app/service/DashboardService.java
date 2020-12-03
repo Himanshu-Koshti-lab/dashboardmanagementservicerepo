@@ -129,6 +129,7 @@ public class DashboardService {
 	public GetCustomer getCustomer(String emailID) {
 		User user=userRepository.findByEmailID(emailID);
 		GetCustomer response=new GetCustomer();
+		response.setUser_id(user.getId());
 		response.setFirstName(user.getFirstName());
 		response.setLastName(user.getLastName());
 		response.setEmailID(user.getEmailID());
