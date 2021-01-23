@@ -15,6 +15,7 @@ import com.tcs.poc.app.model.AccountResponse;
 import com.tcs.poc.app.model.GetAllCustomerAccountDetailsResponse;
 import com.tcs.poc.app.model.GetAllCustomerDetailsForEmployeeResponse;
 import com.tcs.poc.app.model.UserResponse;
+import com.tcs.poc.app.utils.BankConstants;
 
 @Service
 public class DashboardService {
@@ -27,11 +28,11 @@ public class DashboardService {
 		headers.set("Authorization", token);
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
-		ResponseEntity<UserResponse[]> responseU = restTemplate.exchange("http://localhost:8081/AllUsers", HttpMethod.GET ,entity , UserResponse[].class);
+		ResponseEntity<UserResponse[]> responseU = restTemplate.exchange(BankConstants.USER_API_URL+"/AllUsers", HttpMethod.GET ,entity , UserResponse[].class);
 		UserResponse[] user = responseU.getBody();
 		List<UserResponse> tempUser = Arrays.asList(user);
 		//List<Account> tempAcc = accountRepository.findAll();
-		ResponseEntity<AccountResponse[]> responseA = restTemplate.exchange("http://localhost:8084/AllAccs", HttpMethod.GET ,entity , AccountResponse[].class);
+		ResponseEntity<AccountResponse[]> responseA = restTemplate.exchange(BankConstants.ACCOUNT_API_URL+"/AllAccs", HttpMethod.GET ,entity , AccountResponse[].class);
 		AccountResponse[] account = responseA.getBody();
 		List<AccountResponse> tempAcc = Arrays.asList(account);
 		//List<Account> tempAcc = Arrays.asList(account);
@@ -66,11 +67,11 @@ public class DashboardService {
 		headers.set("Authorization", token);
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
-		ResponseEntity<UserResponse[]> responseU = restTemplate.exchange("http://localhost:8081/AllUsers", HttpMethod.GET ,entity , UserResponse[].class);
+		ResponseEntity<UserResponse[]> responseU = restTemplate.exchange(BankConstants.USER_API_URL+"/AllUsers", HttpMethod.GET ,entity , UserResponse[].class);
 		UserResponse[] user = responseU.getBody();
 		List<UserResponse> tempUser = Arrays.asList(user);
 		//List<Account> tempAcc = accountRepository.findAll();
-		ResponseEntity<AccountResponse[]> responseA = restTemplate.exchange("http://localhost:8084/AllAccs", HttpMethod.GET ,entity , AccountResponse[].class);
+		ResponseEntity<AccountResponse[]> responseA = restTemplate.exchange(BankConstants.ACCOUNT_API_URL+"/AllAccs", HttpMethod.GET ,entity , AccountResponse[].class);
 		AccountResponse[] account = responseA.getBody();
 		List<AccountResponse> tempAcc = Arrays.asList(account);
 		List<GetAllCustomerDetailsForEmployeeResponse> tempCustomer = new ArrayList<GetAllCustomerDetailsForEmployeeResponse>();

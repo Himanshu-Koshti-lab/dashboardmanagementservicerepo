@@ -36,26 +36,4 @@ public class DashboardController {
 		List<GetAllCustomerDetailsForEmployeeResponse> user = dashboarService.getCustomerDetailsForEmployee(token);
 		return user;
 	}
-	
-	
-//	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
-//	@GetMapping(value = "/allacc")
-//	@ResponseBody
-//	public void getCus(@RequestHeader("Authorization") String token) {
-//		RestTemplate restTemplate = new RestTemplate();
-//		HttpHeaders  headers = new HttpHeaders();
-//		headers.set("Authorization", token);
-//		headers.setContentType(MediaType.APPLICATION_JSON);
-//		HttpEntity<String> entity = new HttpEntity<String>(headers);
-//		ResponseEntity<User[]> response = restTemplate.exchange("http://localhost:8081/AllUsers", HttpMethod.GET ,entity , User[].class);
-//		User[] user = response.getBody();
-//		List<User> list = Arrays.asList(user);
-//		System.out.println(list.size());
-//		System.out.println(list.get(0).getId());
-//		System.out.println(user.length);
-//		System.out.println(user[0].getId());		
-//	}
-	
-	
-
 }
