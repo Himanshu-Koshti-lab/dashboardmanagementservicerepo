@@ -2,11 +2,7 @@ package com.tcs.poc.app.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,14 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.tcs.poc.app.model.AccountResponse;
-import com.tcs.poc.app.model.GetAdmin;
 import com.tcs.poc.app.model.GetAllCustomerAccountDetailsResponse;
 import com.tcs.poc.app.model.GetAllCustomerDetailsForEmployeeResponse;
-import com.tcs.poc.app.model.GetAllCustomerResponse;
-import com.tcs.poc.app.model.GetAllEmployeeResponse;
-import com.tcs.poc.app.model.GetCustomer;
-import com.tcs.poc.app.model.GetEmployee;
-import com.tcs.poc.app.model.UserRegistrationResponse;
 import com.tcs.poc.app.model.UserResponse;
 
 @Service
