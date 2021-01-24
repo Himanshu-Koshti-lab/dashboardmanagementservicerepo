@@ -71,29 +71,23 @@ public class DashboardService {
 		UserResponse[] user = responseU.getBody();
 		List<UserResponse> tempUser = Arrays.asList(user);
 		//List<Account> tempAcc = accountRepository.findAll();
-		ResponseEntity<AccountResponse[]> responseA = restTemplate.exchange(BankConstants.ACCOUNT_API_URL+"/AllAccs", HttpMethod.GET ,entity , AccountResponse[].class);
-		AccountResponse[] account = responseA.getBody();
-		List<AccountResponse> tempAcc = Arrays.asList(account);
+//		ResponseEntity<AccountResponse[]> responseA = restTemplate.exchange(BankConstants.ACCOUNT_API_URL+"/AllAccs", HttpMethod.GET ,entity , AccountResponse[].class);
+//		AccountResponse[] account = responseA.getBody();
+//		List<AccountResponse> tempAcc = Arrays.asList(account);
 		List<GetAllCustomerDetailsForEmployeeResponse> tempCustomer = new ArrayList<GetAllCustomerDetailsForEmployeeResponse>();
 
 		for (int i = 0; i < tempUser.size(); i++) {
-
-			for (int j = 0; j < tempAcc.size(); j++) {
-				if (tempUser.get(i).getUser_id() == tempAcc.get(j).getUserId()
-						&& tempUser.get(i).getRole().equals("CUSTOMER")) {
+				if (tempUser.get(i).getRole().equals("CUSTOMER")) {
 					GetAllCustomerDetailsForEmployeeResponse tempCustomer1 = new GetAllCustomerDetailsForEmployeeResponse();
 					tempCustomer1.setId(tempUser.get(i).getUser_id());
 					tempCustomer1.setFirstName(tempUser.get(i).getFirstName());
 					tempCustomer1.setLastName(tempUser.get(i).getLastName());
-					tempCustomer1.setAccountNumber(tempAcc.get(j).getAccountNumber());
 					tempCustomer1.setEmailID(tempUser.get(i).getEmailID());
 					tempCustomer1.setMobileNo(tempUser.get(i).getMobileNo());
-					tempCustomer1.setAccountStatusId(tempAcc.get(j).getUserAccountType());
+					tempCustomer1.setGender(tempUser.get(i).getGender());
 					tempCustomer.add(tempCustomer1);
 				}
 			}
-
-		}
 		return tempCustomer;
 	}
 
