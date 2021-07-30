@@ -26,7 +26,6 @@ public class DashboardController {
 	public List<GetAllCustomerAccountDetailsResponse> getCustomerAccountDetails(@RequestHeader("Authorization") String token) {
 		List<GetAllCustomerAccountDetailsResponse> user = 
 				dashboarService.getCustomerAccountDetails(token);
-		System.out.println("Test bug");
 		return user;
 	}
 	
